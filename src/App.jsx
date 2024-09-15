@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { ScrollControls, Plane } from '@react-three/drei';
-import Planet from './components/Planet';
+import Planet from './components/PlanetText';
 import PlanetText from './components/PlanetText';
 import { useRef, useState } from 'react';
 
