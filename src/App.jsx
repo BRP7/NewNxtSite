@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Canvas } from '@react-three/fiber';
+import { ScrollControls, Plane } from '@react-three/drei';
+import Planet from './components/Planet';
+import PlanetText from './components/PlanetText';
+import { useRef, useState } from 'react';
+
+const planets = [
+  { name: 'Neptune', size: 5, position: [0, 0, -100], color: '#0000FF', scrollStart: 0 },
+  { name: 'Uranus', size: 4, position: [0, 0, -70], color: '#7FFFD4', scrollStart: 0.2 },
+  { name: 'Saturn', size: 6, position: [0, 0, -50], color: '#FFD700', scrollStart: 0.4 },
+  { name: 'Jupiter', size: 5, position: [0, 0, -30], color: '#FF8C00', scrollStart: 0.6 },
+  { name: 'Mercury', size: 2, position: [0, 0, -10], color: '#D3D3D3', scrollStart: 0.8 },
+  { name: 'Sun', size: 10, position: [0, 0, 0], color: '#FFFF00', scrollStart: 1 }
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const scrollRef = useRef();
+  const [currentPlanet, setCurrentPlanet] = useState(null);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <Canvas camera={{ position: [0, 0, 20], fov: 45 }}>
+        {/* Lighting */}
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+
+        {/* Scroll handler */}
+        <ScrollControls setScrollRef={scrollRef} planets={planets} />
+
+        {/* Planets */}
+        {planets.map((planet, index) => (
+          <Planet key={index} planetData={planet} scroll={scrollRef} />
+        ))}
+
+        {/* Text for each planet */}
+        {planets.map((planet, index) => (
+          <PlanetText key={index} text={planet.name} planetData={planet} />
+        ))}
+      </Canvas>
+    </div>
+  );
 }
 
-export default App
+export default App;
