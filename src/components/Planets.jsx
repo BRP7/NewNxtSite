@@ -7,8 +7,8 @@ import * as THREE from 'three'; // Import Three.js
 extend({ SphereGeometry: THREE.SphereGeometry });
 
 const planetsData = [
-  { name: 'Neptune', size: 5, position: [0, 0, -50], texture: './assets/neptune.png' },
-  { name: 'Uranus', size: 4, position: [0, 0, -30], texture: '/assets/uranus.jpeg' },
+  { name: 'Neptune', size: 5, position: [0, 0, -50], texture: '../assets/neptune.png' },
+  { name: 'Uranus', size: 4, position: [0, 0, -30], texture: '../assets/uranus.jpeg' },
   // Add other planets like Saturn, Jupiter, etc.
 ];
 
