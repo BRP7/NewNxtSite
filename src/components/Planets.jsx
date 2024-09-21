@@ -1,6 +1,10 @@
 import React, { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, extend } from '@react-three/fiber';
 import { MeshWobbleMaterial } from '@react-three/drei';
+import * as THREE from 'three'; // Import Three.js
+
+// Extend the SphereGeometry for React-Three-Fiber
+extend({ SphereGeometry: THREE.SphereGeometry });
 
 const planetsData = [
   { name: 'Neptune', size: 5, position: [0, 0, -50], texture: '/assets/neptune.jpg' },
@@ -23,8 +27,8 @@ const Planet = ({ name, size, position, texture }) => {
 
   return (
     <mesh ref={planetRef} position={position} scale={[size, size, size]}>
-      <sphereBufferGeometry args={[1, 32, 32]} />
-      <MeshWobbleMaterial attach="material" map={texture} factor={1} speed={1} />
+      <sphereGeometry args={[1, 32, 32]} /> {/* Change this to sphereGeometry */}
+      <MeshWobbleMaterial attach="material" factor={1} speed={1} />
     </mesh>
   );
 };
