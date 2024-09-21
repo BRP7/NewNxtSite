@@ -45,20 +45,25 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ScrollControls } from '@react-three/drei';
-import Planets from './components/Planets';
-import ScrollAnimation from './components/ScrollAnimation';
+import Planets from './components/Planets.jsx';
+import ScrollAnimation from './components/ScrollAnimation.jsx';
+
 
 const App = () => {
   return (
-    <div style={{ height: '100vh', backgroundColor: 'black' }}>
-      <Canvas>
-        <ScrollControls pages={6} damping={0.1}>
+    <div style={{ height: '100vh', width: '100vw', backgroundColor: 'black' }}>
+      <Canvas camera={{ position: [0, 0, 20], fov: 75 }}>
+        <ScrollAnimation pages={6} damping={0.1}>
           <Planets />
-        </ScrollControls>
+          <mesh position={[0, 0, 0]}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshStandardMaterial color="red" />
+          </mesh>
+        </ScrollAnimation>
       </Canvas>
-      <ScrollAnimation />
     </div>
   );
 };
+
 
 export default App;
