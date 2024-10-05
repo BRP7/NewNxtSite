@@ -41,7 +41,7 @@
 //   );
 // }
 
-export default App;
+// export default App;
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ScrollControls } from '@react-three/drei';
