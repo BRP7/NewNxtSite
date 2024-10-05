@@ -50,7 +50,7 @@
 
 
 
-const Planet = ({ name, size, position, texture }) => {
+const Planets = ({ name, size, position, texture }) => {
   const planetRef = useRef();
   const textureMap = useTexture(texture);  // Load the texture
 
@@ -69,3 +69,6 @@ const Planet = ({ name, size, position, texture }) => {
     </mesh>
   );
 };
+
+export default Planets;
+
